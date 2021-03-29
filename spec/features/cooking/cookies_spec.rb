@@ -10,12 +10,13 @@ feature 'Cooking cookies' do
 
     click_link_or_button 'Prepare Cookie'
     fill_in 'Fillings', with: 'Chocolate Chip'
+    fill_in 'qty', with: 1
     click_button 'Mix and bake'
 
     expect(current_path).to eq(oven_path(oven))
     expect(page).to have_content 'Chocolate Chip'
     expect(page).to have_content 'Cookie in oven'
-    end
+    
   end
 
   scenario 'Trying to bake a cookie while oven is full' do

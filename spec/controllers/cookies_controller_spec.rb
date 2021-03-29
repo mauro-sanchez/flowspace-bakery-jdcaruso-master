@@ -57,6 +57,7 @@ describe CookiesController do
     let(:cookie_params) {
       {
         fillings: 'Vanilla',
+        qty: 10
       }
     }
 
@@ -79,10 +80,10 @@ describe CookiesController do
       end
 
       context "when a valid oven is supplied" do
-        it "creates a cookie for that oven" do
+        it "creates a batch of cookies for that oven" do
           expect {
             the_request
-          }.to change{Cookie.count}.by(1)
+          }.to change{Cookie.count}.by(cookie_params[:qty].to_i)
 
           expect(Cookie.last.storage).to eq(oven)
         end
