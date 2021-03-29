@@ -1,0 +1,15 @@
+---
+:verbose: false
+:concurrency: 5
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+staging:
+  :concurrency: 5
+  :pidfile: ../tmp/pids/sidekiq.pid
+  :logfile: ../log/sidekiq.log
+production:
+  :concurrency: 5
+  :pidfile: ../tmp/pids/sidekiq.pid
+  :logfile: ../log/sidekiq.log
+:queues:
+  - cookies 
