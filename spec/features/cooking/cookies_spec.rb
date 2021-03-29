@@ -10,12 +10,13 @@ feature 'Cooking cookies' do
 
     click_link_or_button 'Prepare Cookie'
     fill_in 'Fillings', with: 'Chocolate Chip'
+    fill_in 'Qty', with: 1
     click_button 'Mix and bake'
 
     expect(current_path).to eq(oven_path(oven))
     expect(page).to have_content 'Chocolate Chip'
     expect(page).to have_content 'Cookie in oven'
-    end
+    
   end
 
   scenario 'Trying to bake a cookie while oven is full' do
@@ -30,7 +31,7 @@ feature 'Cooking cookies' do
     click_button 'Mix and bake'
 
     click_link_or_button  'Prepare Cookie'
-    expect(page).to have_content 'A cookie is already in the oven!'
+    expect(page).to have_content 'A batch of cookies is already in the oven!'
     expect(current_path).to eq(oven_path(oven))
     expect(page).to_not have_button 'Mix and bake'
   end
@@ -42,17 +43,11 @@ feature 'Cooking cookies' do
     oven = FactoryGirl.create(:oven, user: user)
     visit oven_path(oven)
 
-    3.times do
-      click_link_or_button 'Prepare Cookie'
-      fill_in 'Fillings', with: 'Chocolate Chip'
-      click_button 'Mix and bake'
+    click_link_or_button 'Prepare Cookie'
+    fill_in 'Fillings', with: 'Chocolate Chip'
+    fill_in 'Qty', with: 3
+    click_button 'Mix and bake'
 
-      click_button 'Retrieve Cookie'
-    end
-
-    visit root_path
-    within '.store-inventory' do
-      expect(page).to have_content '3 Cookies'
-    end
+    expect(oven.cookies.length).to eq(3)
   end
 end

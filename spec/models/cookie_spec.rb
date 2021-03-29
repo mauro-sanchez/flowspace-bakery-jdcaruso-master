@@ -15,7 +15,7 @@ describe Cookie do
     let(:cookie) { create(:cookie) }
 
     it 'is not ready' do
-      expect(cookie.ready?).not_to be_true
+      expect(cookie.ready?).to be_falsey
     end
   end
 end

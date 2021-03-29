@@ -1,4 +1,4 @@
-%h3 New Cookie for oven '#{@oven.name}'
+%h3 New Cookies for oven '#{@oven.name}'
 
 = form_for [@oven, @cookie] do |f|
   .row
@@ -7,6 +7,12 @@
   .row
     .small-8.columns
       = f.text_field :fillings
+  .row
+    .small-8.columns
+      = f.label :qty
+  .row
+    .small-8.columns
+      = number_field_tag "cookie[qty]", 1
 
   .row
     .small-8.columns
