@@ -6,6 +6,6 @@ class Cookie < ActiveRecord::Base
 
   private
   def cook!
-    CookieCookerWorker.perform_in(10.seconds, self.id)
+    CookieCookerWorker.perform_in(2.minutes, self.id)
   end
 end
