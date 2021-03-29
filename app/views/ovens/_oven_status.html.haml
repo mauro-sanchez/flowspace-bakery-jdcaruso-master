@@ -1,8 +1,9 @@
 Cookie in oven:
-- if oven.cookie
-  1 cookie with #{oven.cookie.fillings.presence || "no fillings"}
-  - if oven.cookie.ready?
-    (Your Cookie is Ready)
-    = button_to "Retrieve Cookie", empty_oven_path(oven), class: 'button tiny'
+- qty = oven.cookies.length
+- if oven.cookies.present?
+  #{pluralize(qty, "cookie")} with #{oven.cookies.first.fillings.presence || "no fillings"}
+  - if oven.all_cookies_cooked?
+    (Your #{"Cookie".pluralize(qty)} #{"is".pluralize(qty)} Ready)
+    = button_to "Retrieve Cookies", empty_oven_path(oven), class: 'button tiny'
 - else
   None 
