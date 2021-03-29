@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :basic_authenticate
+  before_action :get_browser_info
 
   private
 
@@ -14,5 +15,9 @@ class ApplicationController < ActionController::Base
       username == 'bake' && password == 'somecookies'
     end
 
+  end
+
+  def get_browser_info
+    @browser = Browser.new request.user_agent
   end
 end

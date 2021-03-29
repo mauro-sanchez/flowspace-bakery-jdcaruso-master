@@ -1,8 +1,12 @@
 %h3= @oven.name
 
+- if @browser.device.mobile?
+  = link_to "Prepare Cookies", new_oven_cookies_path(@oven), class: 'button'
+
 .cookie-info
   = render partial: 'oven_status', locals: { oven: @oven }
 
-%br
 
-= link_to "Prepare Cookies", new_oven_cookies_path(@oven), class: 'button'
+- if !@browser.device.mobile?
+  %br
+  = link_to "Prepare Cookies", new_oven_cookies_path(@oven), class: 'button'
