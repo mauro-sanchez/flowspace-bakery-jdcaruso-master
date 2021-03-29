@@ -1,6 +1,6 @@
 class CookieChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from "cookie_channel"
   end
 
   def unsubscribed

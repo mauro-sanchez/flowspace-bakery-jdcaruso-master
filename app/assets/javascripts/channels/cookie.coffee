@@ -7,3 +7,4 @@ App.cookie = App.cable.subscriptions.create "CookieChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
+    $('.cookie-info').html(data.oven_status); 
